@@ -1,18 +1,21 @@
 import React from 'react';
 import axios from 'axios';
 
-import Info from './Info';
-import AppContext from '../context';
+import Info from '../Info';
+import { useCart } from '../../hooks/useCart';
+
+import styles from './Drawer.module.scss';
 
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-function Drawer({ onClose, onRemove, items = [] }) {
-  const { cartItems, setCartItems } = React.useContext(AppContext);
+function Drawer({ onClose, onRemove, items = [], opened }) {
+  const { cartItems, setCartItems, totalPrice } = useCart();
   const [orderId, setOrderId] = React.useState(null);
   const [isOrderComplete, setIsOrderComplete] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
 
   const onClickOrder = async () => {
+    // ЗАКАЗ ОФОРМЛЯЕТСЯ, НО ВСЁ РАВНО ВЫДАЕТ ОШИБКУ
     try {
       setIsLoading(true);
       const { data } = await axios.post(
@@ -39,8 +42,8 @@ function Drawer({ onClose, onRemove, items = [] }) {
     setIsLoading(false);
   };
   return (
-    <div className="overlay">
-      <div className="drawer">
+    <div className={`${styles.overlay} ${opened ? styles.overlayVisible : ''}`}>
+      <div className={styles.drawer}>
         <h2 className="d-flex justify-between mb-30 ">
           Корзина{' '}
           <img
@@ -80,12 +83,12 @@ function Drawer({ onClose, onRemove, items = [] }) {
                 <li>
                   <span>Итого:</span>
                   <div></div>
-                  <b>21 498 руб. </b>
+                  <b>{totalPrice} руб. </b>
                 </li>
                 <li>
                   <span>Налог 5%:</span>
                   <div></div>
-                  <b>1074 руб. </b>
+                  <b>{(totalPrice / 100) * 5}руб. </b>
                 </li>
               </ul>
               <button
