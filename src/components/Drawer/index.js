@@ -15,7 +15,6 @@ function Drawer({ onClose, onRemove, items = [], opened }) {
   const [isLoading, setIsLoading] = React.useState(false);
 
   const onClickOrder = async () => {
-    // ЗАКАЗ ОФОРМЛЯЕТСЯ, НО ВСЁ РАВНО ВЫДАЕТ ОШИБКУ
     try {
       setIsLoading(true);
       const { data } = await axios.post(
@@ -55,7 +54,7 @@ function Drawer({ onClose, onRemove, items = [], opened }) {
         </h2>
         {items.length > 0 ? (
           <>
-            <div className="items">
+            <div className="items flex">
               {items.map((obj) => (
                 <div
                   key={obj.id}
