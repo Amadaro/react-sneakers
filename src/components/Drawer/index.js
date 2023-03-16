@@ -108,9 +108,7 @@ function Drawer({ onClose, onRemove, items = [], opened }) {
                 : 'Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ.'
             }
             image={
-              isOrderComplete
-                ? '/img/complete-order.jpg'
-                : '/img/empty-cart.jpg'
+              isOrderComplete ? 'img/complete-order.jpg' : 'img/empty-cart.jpg'
             }
           />
         )}

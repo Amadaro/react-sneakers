@@ -24,9 +24,7 @@ function App() {
           await Promise.all([
             axios.get('https://63fb9afc7a045e192b6c4938.mockapi.io/cart'),
             axios.get('https://63fb9afc7a045e192b6c4938.mockapi.io/favorites'),
-            axios.get(
-              'https://run.mocky.io/v3/f8ad8919-f654-495c-9fdb-9e45aabb9dca'
-            ),
+            axios.get('https://640e17fbb07afc3b0dbf0c82.mockapi.io/items'),
           ]);
 
         setIsLoading(false);
@@ -147,7 +145,7 @@ function App() {
 
         <Routes>
           <Route
-            path="/"
+            path=""
             element={
               <Home
                 items={items}
@@ -161,8 +159,8 @@ function App() {
               />
             }
           />
-          <Route path="/favorites" element={<Favorites />} />
-          <Route path="/orders" element={<Orders />} />
+          <Route path="favorites" element={<Favorites />} />
+          <Route path="orders" element={<Orders />} />
         </Routes>
       </div>
     </AppContext.Provider>
