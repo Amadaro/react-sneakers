@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 import axios from 'axios';
 import Header from './components/Header';
 import Drawer from './components/Drawer';
+import CarouselCompound from './components/Carousel-compound';
 import AppContext from './context';
 
 import Home from './pages/Home';
@@ -142,7 +143,25 @@ function App() {
         />
 
         <Header onClickCart={() => setCartOpened(true)} />
-
+        <div className="app__main-container">
+          <CarouselCompound infinite>
+            <CarouselCompound.Page>
+              <div className="item item-1">
+                <img src="img/carouselImage1.png" alt="carouselImage"></img>
+              </div>
+            </CarouselCompound.Page>
+            <CarouselCompound.Page>
+              <div className="item item-2">
+                <img src="img/carouselImage2.jpg" alt="carouselImage"></img>
+              </div>
+            </CarouselCompound.Page>
+            <CarouselCompound.Page>
+              <div className="item item-3">
+                <img src="img/carouselImage3.jpg" alt="carouselImage"></img>
+              </div>
+            </CarouselCompound.Page>
+          </CarouselCompound>
+        </div>
         <Routes>
           <Route
             path=""
