@@ -1,6 +1,7 @@
 import React from 'react';
 import Card from '../components/Card';
 import AppContext from '../context';
+import Info from '../components/Info';
 
 function Favorites() {
   const { favorites, onAddToFavorite } = React.useContext(AppContext);
@@ -11,14 +12,23 @@ function Favorites() {
         <h1> Мои закладки</h1>
       </div>
       <div className="d-flex flex-wrap">
-        {favorites.map((item, index) => (
-          <Card
-            key={index}
-            favorited={true}
-            onFavorite={onAddToFavorite}
-            {...item}
+        {favorites.length > 0 ? (
+          favorites.map((item, index) => (
+            <Card
+              key={index}
+              favorited={true}
+              onFavorite={onAddToFavorite}
+              {...item}
+            />
+          ))
+        ) : (
+          <Info
+            title="Закладок нет :("
+            description="Вы ничего не добавляли в закладки"
+            image="img/empty-favorites.png"
+            btnLink="/"
           />
-        ))}
+        )}
       </div>
     </div>
   );

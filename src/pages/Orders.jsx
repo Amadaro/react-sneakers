@@ -1,10 +1,9 @@
 import axios from 'axios';
 import React from 'react';
 import Card from '../components/Card';
-import AppContext from '../context';
+import Info from '../components/Info';
 
 function Orders() {
-  const { onAddToCart, onAddToFavorite } = React.useContext(AppContext);
   const [orders, setOrders] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
   React.useEffect(() => {
@@ -28,9 +27,20 @@ function Orders() {
         <h1> Мои заказы</h1>
       </div>
       <div className="d-flex flex-wrap">
-        {(isLoading ? [...Array(8)] : orders).map((item, index) => (
-          <Card key={index} loading={isLoading} {...item} />
-        ))}
+        {orders.length > 0 ? (
+          (isLoading ? [...Array(8)] : orders).map((item, index) => (
+            <Card key={index} loading={isLoading} {...item} />
+          ))
+        ) : isLoading ? (
+          [...Array(8)]
+        ) : (
+          <Info
+            title="У вас нет заказов"
+            description="Оформите хотя бы один заказ"
+            image="img/empty-orders.png"
+            btnLink="/"
+          />
+        )}
       </div>
     </div>
   );

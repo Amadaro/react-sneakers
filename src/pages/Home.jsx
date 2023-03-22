@@ -1,5 +1,6 @@
 import React from 'react';
 import Card from '../components/Card';
+import Slider from '../components/Slider/Slider';
 function Home({
   items,
   searchValue,
@@ -26,10 +27,16 @@ function Home({
 
   return (
     <div className="content p-40">
+      {/* место для слайдера */}
+      <div className="sliderBox">
+        <Slider />
+      </div>
+
       <div className="d-flex align-center justify-between mb-40">
         <h1>
           {searchValue ? `Поиск по запросу: "${searchValue}"` : 'Все кроссовки'}
         </h1>
+
         <div className="search-block  d-flex">
           <img src="img/search.svg" alt="Search" />
           {searchValue && (
