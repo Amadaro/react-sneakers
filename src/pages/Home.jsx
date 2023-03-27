@@ -27,7 +27,6 @@ function Home({
 
   return (
     <div className="content p-40">
-      {/* место для слайдера */}
       <div className="sliderBox">
         <Slider />
       </div>
